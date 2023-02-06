@@ -33,7 +33,13 @@ app.get("/search", (req, res) => {
       e.name.toLowerCase().includes(keyword.toLowerCase()) ||
       e.category.toLowerCase().includes(keyword.toLowerCase())
   );
-  res.render("index", { restaurants: restaurants, keyword: keyword });
+
+  // 若關鍵字搜尋沒結果則渲染 noresult，出現相關字樣提醒使用者
+  if (restaurants.length === 0 && keyword.length !== 0) {
+    res.render("noresult", { keyword: keyword });
+  } else {
+    res.render("index", { restaurants: restaurants, keyword: keyword });
+  }
 });
 
 // 設定伺服器監聽
