@@ -33,6 +33,7 @@
 
 <!-- restaurant list -->
 <div class="container mt-5">
+  {{#if restaurants}}
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="row row-cols-sm-3">
@@ -56,4 +57,9 @@
       </div>
     </div>
   </div>
+  {{else}}
+  <div class="text-center">
+  <span class="badge rounded-pill bg-warning text-dark fs-4">沒有符合的關鍵字，請重新查詢</span>
+  </div>
+  {{/if}}
 </div>

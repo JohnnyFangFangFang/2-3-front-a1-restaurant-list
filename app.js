@@ -23,7 +23,7 @@ app.get("/restaurants/:restaurant_id", (req, res) => {
   const restaurant = restaurantList.results.find(
     (e) => e.id.toString() === req.params.restaurant_id
   );
-  res.render("show", { restaurant: restaurant });
+  res.render("show", { restaurant });
 });
 
 app.get("/search", (req, res) => {
@@ -34,12 +34,7 @@ app.get("/search", (req, res) => {
       e.category.toLowerCase().includes(keyword.toLowerCase())
   );
 
-  // 若關鍵字搜尋沒結果則渲染 noresult，出現相關字樣提醒使用者
-  if (restaurants.length === 0 && keyword.length !== 0) {
-    res.render("noresult", { keyword: keyword });
-  } else {
-    res.render("index", { restaurants: restaurants, keyword: keyword });
-  }
+  res.render("index", { restaurants, keyword });
 });
 
 // 設定伺服器監聽
